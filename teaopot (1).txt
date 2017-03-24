@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<windows.h>
+#include<GL/glut.h>
+
+    void init(void)
+    {
+
+    glClearColor(0.0,0.0,0.0,0.0);
+    glShadeModel(GL_FLAT);
+}
+void display(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+    //glBegin(GL_QUADS);
+    glColor3f(1.6f,0.3f,0.7f);
+    glLoadIdentity();
+   gluLookAt(0.0,0.0,5.0,0.0,0.0,0.0,0.0,1.0,0.0);
+    glScalef(1.0,2.0,1.0);
+
+   // glutSolidCube(2.0);
+    glutWireTeapot(1.0);
+    glFlush();
+}
+void reshape(int w,int h)
+{
+
+    glViewport(0,0,(GLsizei)w,(GLsizei)h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glFrustum(-1.0,0.5,-1.0,1.0,1.5,20.0);
+    glRotatef(45.0,5.0,3.0,3.0);
+    glMatrixMode(GL_MODELVIEW);
+
+
+}
+int main(int argc,char**argv)
+{
+glutInit(&argc,argv);
+glutCreateWindow("My first openGL program");
+glutInitWindowSize(3000,300);
+glutInitWindowPosition(50,50);
+init();
+glutDisplayFunc(display);
+reshape(5,2);
+//display();
+glutMainLoop();
+return 0;
+}
